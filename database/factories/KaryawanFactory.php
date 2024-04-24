@@ -9,7 +9,7 @@ class KaryawanFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
-     *
+     *tes111
      * @var string
      */
     protected $model = Karyawan::class;

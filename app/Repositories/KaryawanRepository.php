@@ -8,7 +8,7 @@ use App\Repositories\BaseRepository;
 /**
  * Class KaryawanRepository
  * @package App\Repositories
- * @version April 23, 2024, 5:45 am UTC
+ * @version April 24, 2024, 1:47 am UTC
 */
 
 class KaryawanRepository extends BaseRepository
@@ -18,7 +18,16 @@ class KaryawanRepository extends BaseRepository
      */
     protected $fieldSearchable = [
         'nama_karyawan',
-        'nomor_rekening'
+        'nomor_rekening',
+        'mulai_kerja',
+        'lama_kerja',
+        'masa_kerja_gaji',
+        'prestasi_gaji',
+        'uang_makan',
+        'uang_transport',
+        'pengembalian',
+        'tunai_gaji',
+        'sisa_gaji'
     ];
 
     /**

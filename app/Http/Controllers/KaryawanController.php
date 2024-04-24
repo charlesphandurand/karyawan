@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\KaryawanDataTable;
+use App\Http\Requests;
 use App\Http\Requests\CreateKaryawanRequest;
 use App\Http\Requests\UpdateKaryawanRequest;
 use App\Repositories\KaryawanRepository;
-use App\Http\Controllers\AppBaseController;
-use Illuminate\Http\Request;
 use Flash;
+use App\Http\Controllers\AppBaseController;
 use Response;
 
 class KaryawanController extends AppBaseController
@@ -23,16 +24,12 @@ class KaryawanController extends AppBaseController
     /**
      * Display a listing of the Karyawan.
      *
-     * @param Request $request
-     *
+     * @param KaryawanDataTable $karyawanDataTable
      * @return Response
      */
-    public function index(Request $request)
+    public function index(KaryawanDataTable $karyawanDataTable)
     {
-        $karyawans = $this->karyawanRepository->all();
-
-        return view('karyawans.index')
-            ->with('karyawans', $karyawans);
+        return $karyawanDataTable->render('karyawans.index');
     }
 
     /**
@@ -66,7 +63,7 @@ class KaryawanController extends AppBaseController
     /**
      * Display the specified Karyawan.
      *
-     * @param int $id
+     * @param  int $id
      *
      * @return Response
      */
@@ -86,7 +83,7 @@ class KaryawanController extends AppBaseController
     /**
      * Show the form for editing the specified Karyawan.
      *
-     * @param int $id
+     * @param  int $id
      *
      * @return Response
      */
@@ -106,7 +103,7 @@ class KaryawanController extends AppBaseController
     /**
      * Update the specified Karyawan in storage.
      *
-     * @param int $id
+     * @param  int              $id
      * @param UpdateKaryawanRequest $request
      *
      * @return Response
@@ -131,9 +128,7 @@ class KaryawanController extends AppBaseController
     /**
      * Remove the specified Karyawan from storage.
      *
-     * @param int $id
-     *
-     * @throws \Exception
+     * @param  int $id
      *
      * @return Response
      */

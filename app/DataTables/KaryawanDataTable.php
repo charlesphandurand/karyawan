@@ -16,16 +16,43 @@ class KaryawanDataTable extends DataTable
      * @param mixed $query Results from query() method.
      * @return \Yajra\DataTables\DataTableAbstract
      */
-    public function dataTable($query)
-    {
-        $dataTable = new EloquentDataTable($query);
-        return $dataTable
-        ->addColumn('action', 'karyawans.datatables_actions')
-        ->editColumn('lama_kerja', function ($karyawan) {
-            return $karyawan->lama_kerja . ' tahun';
-        });
-        // return $dataTable->addColumn('action', 'karyawans.datatables_actions');
-    }
+
+
+    // public function dataTable($query)
+    // {
+    //     $dataTable = new EloquentDataTable($query);
+    //     return $dataTable
+    //     ->addColumn('action', 'karyawans.datatables_actions')
+    //     // return $dataTable->addColumn('action', 'karyawans.datatables_actions');
+
+    //     // fungsi untuk penambahan string lama_kerja = 1 + 'tahun'
+    //     ->editColumn('lama_kerja', function ($karyawan) {
+    //         return $karyawan->lama_kerja . ' tahun';
+    //     });
+    // }
+
+
+// SETELAH REVISI OPERATOR
+public function dataTable($query)
+{
+    $dataTable = new EloquentDataTable($query);
+
+    // Tambahkan kolom sisa gaji
+    $dataTable->addColumn('sisa_gaji', function ($karyawan) {
+        return $karyawan->uang_transport + $karyawan->uang_makan;
+    });
+
+    // Edit kolom lama_kerja
+    $dataTable->editColumn('lama_kerja', function ($karyawan) {
+        return $karyawan->lama_kerja . ' tahun';
+    });
+
+    // Tambahkan kolom action
+    $dataTable->addColumn('action', 'karyawans.datatables_actions');
+
+    return $dataTable;
+}
+
 
     /**
      * Get query source of dataTable.
@@ -82,7 +109,7 @@ class KaryawanDataTable extends DataTable
             'uang_transport',
             'pengembalian',
             'tunai_gaji',
-            'sisa_gaji'
+            'sisa_gaji',
         ];
     }
 

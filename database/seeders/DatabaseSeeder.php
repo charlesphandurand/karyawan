@@ -15,17 +15,17 @@ class DatabaseSeeder extends Seeder
     {
         \App\Models\User::factory(10)->create();
         \App\Models\Karyawan::factory(50)->create([
-            'nama_karyawan' => 'Admin',
-            'nomor_rekening' => '1234567890',
-            'mulai_kerja' => '2021-01-01',
-            'lama_kerja' => '5',
-            'masa_kerja_gaji' => '1',
-            'prestasi_gaji' => '1',
-            'uang_makan' => '1',
-            'uang_transport' => '1',
-            'pengembalian' => '1',
-            'tunai_gaji' => '1',
-            'sisa_gaji' => '1',
+            'nama_karyawan' => 'TAUFAN TRI MARTONO',
+            'nomor_rekening' => '0310006406998',
+            'mulai_kerja' => '2007-11-01',
+            'lama_kerja' => '16',
+            'masa_kerja_gaji' => '50000',
+            'prestasi_gaji' => '10000',
+            'uang_makan' => '5000',
+            'uang_transport' => '5000',
+            'pengembalian' => '300',
+            'tunai_gaji' => '300',
+            'sisa_gaji' => '300',
         ]);
     }
 }

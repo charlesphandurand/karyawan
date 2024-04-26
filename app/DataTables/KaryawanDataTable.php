@@ -19,8 +19,12 @@ class KaryawanDataTable extends DataTable
     public function dataTable($query)
     {
         $dataTable = new EloquentDataTable($query);
-
-        return $dataTable->addColumn('action', 'karyawans.datatables_actions');
+        return $dataTable
+        ->addColumn('action', 'karyawans.datatables_actions')
+        ->editColumn('lama_kerja', function ($karyawan) {
+            return $karyawan->lama_kerja . ' tahun';
+        });
+        // return $dataTable->addColumn('action', 'karyawans.datatables_actions');
     }
 
     /**

@@ -9,6 +9,8 @@ use App\Http\Requests\UpdateKaryawanRequest;
 use App\Repositories\KaryawanRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
+use Yajra\DataTables\DataTables;
+use App\Models\Karyawan;
 use Response;
 
 class KaryawanController extends AppBaseController
@@ -76,7 +78,6 @@ class KaryawanController extends AppBaseController
 
             return redirect(route('karyawans.index'));
         }
-
         return view('karyawans.show')->with('karyawan', $karyawan);
     }
 

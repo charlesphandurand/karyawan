@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
             'nama_karyawan' => 'Admin',
             'nomor_rekening' => '1234567890',
             'mulai_kerja' => '2021-01-01',
-            'lama_kerja' => '1',
+            'lama_kerja' => '5',
             'masa_kerja_gaji' => '1',
             'prestasi_gaji' => '1',
             'uang_makan' => '1',

@@ -76,9 +76,13 @@ public function dataTable($query)
         ->setTableId('karyawan-table')
         ->columns($this->getColumns())
         ->minifiedAjax()
-            ->addAction(['width' => '120px', 'printable' => false])
-            ->parameters([
-                'dom'       => 'lBfrtip',
+        ->addAction(['width' => '120px', 'printable' => false])
+        ->parameters([
+            'dom'       => "<'row'<'col-md-6'l><'col-md-6'<'float-right'B>>>" .
+                           "<'row'<'col-md-12'tr>>" .
+                           "<'row'<'col-md-5'i><'col-md-7'p>>", // Menyesuaikan tata letak tombol dengan posisi pagination ke kanan bawah
+                'scrollX'   => '100%',
+                'scrollY'   => '400px', // Atur tinggi scroll di sini sesuai kebutuhan Anda
                 'stateSave' => true,
                 'order'     => [[0, 'desc']],
                 'buttons'   => [
@@ -87,8 +91,17 @@ public function dataTable($query)
                     ['extend' => 'print', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'reset', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'reload', 'className' => 'btn btn-default btn-sm no-corner',],
-                ],
-            ]);
+            ],
+            'initComplete' => 'function () {
+                $("table.dataTable thead").eq(1).remove();
+                $(window).on("resize", function() {
+                    $("table.dataTable thead").eq(1).remove();
+                });
+            }',
+            'drawCallback' => 'function () {
+                $("table.dataTable thead").eq(1).remove();
+            }',
+        ]);
     }
 
     /**

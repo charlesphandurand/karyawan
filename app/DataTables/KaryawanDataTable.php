@@ -50,6 +50,11 @@ public function dataTable($query)
     // Tambahkan kolom action
     $dataTable->addColumn('action', 'karyawans.datatables_actions');
 
+    // Edit kolom mulai_kerja untuk menampilkan tanggal dalam format yang diinginkan
+    $dataTable->editColumn('mulai_kerja', function ($karyawan) {
+        return date('Y-m-d', strtotime($karyawan->mulai_kerja));
+    });
+
     return $dataTable;
 }
 

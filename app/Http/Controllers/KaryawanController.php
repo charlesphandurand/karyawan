@@ -117,16 +117,24 @@ class KaryawanController extends AppBaseController
 
         if (empty($karyawan)) {
             Flash::error('Karyawan not found');
-
             return redirect(route('karyawans.index'));
         }
 
-        $karyawan = $this->karyawanRepository->update($request->all(), $id);
+        // Update data karyawan
+        $input = $request->all();
+        $karyawan = $this->karyawanRepository->update($input, $id);
+
+        // Hitung ulang sisa gaji
+        $sisa_gaji = $request->uang_transport + $request->uang_makan - $request->pengembalian - $request->tunai_gaji;
+        $karyawan->sisa_gaji = $sisa_gaji;
+
+        // Simpan perubahan
+        $karyawan->save();
 
         Flash::success('Karyawan updated successfully.');
-
         return redirect(route('karyawans.index'));
     }
+
 
     /**
      * Remove the specified Karyawan from storage.

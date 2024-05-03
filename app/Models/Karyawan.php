@@ -26,12 +26,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Karyawan extends Model
 {
     use SoftDeletes;
-
     use HasFactory;
 
     public $table = 'karyawans';
-
-
     protected $dates = ['deleted_at'];
 
 

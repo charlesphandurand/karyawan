@@ -32,7 +32,7 @@ class KaryawanFactory extends Factory
         'uang_transport' => $this->faker->word,
         'pengembalian' => $this->faker->word,
         'tunai_gaji' => $this->faker->word,
-        'sisa_gaji' => $this->faker->word,
+        // 'sisa_gaji' => $this->faker->word,
         'created_at' => $this->faker->date('Y-m-d H:i:s'),
         'updated_at' => $this->faker->date('Y-m-d H:i:s')
         ];

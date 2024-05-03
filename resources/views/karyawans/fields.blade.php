@@ -74,10 +74,10 @@
 </div>
 
 <!-- Sisa Gaji Field -->
-<div class="form-group col-sm-6">
+{{-- <div class="form-group col-sm-6">
     {!! Form::label('sisa_gaji', 'Sisa Gaji:') !!}
     {!! Form::number('sisa_gaji', null, ['class' => 'form-control']) !!}
-</div>
+</div> --}}
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">

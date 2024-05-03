@@ -38,9 +38,9 @@ public function dataTable($query)
     $dataTable = new EloquentDataTable($query);
 
     // Tambahkan kolom sisa gaji
-    $dataTable->addColumn('sisa_gaji', function ($karyawan) {
-        return $karyawan->uang_transport + $karyawan->uang_makan;
-    });
+    // $dataTable->addColumn('sisa_gaji', function ($karyawan) {
+    //     return $karyawan->uang_transport + $karyawan->uang_makan;
+    // });
 
     // Edit kolom lama_kerja
     $dataTable->editColumn('lama_kerja', function ($karyawan) {
@@ -76,12 +76,10 @@ public function dataTable($query)
         ->setTableId('karyawan-table')
         ->columns($this->getColumns())
         ->minifiedAjax()
-        ->addAction(['width' => '120px', 'printable' => false])
+        ->addAction(['width' => '100%', 'printable' => false])
         ->parameters([
-            'dom'       => "<'row'<'col-md-6'l><'col-md-6'<'float-right'B>>>" .
-                           "<'row'<'col-md-12'tr>>" .
-                           "<'row'<'col-md-5'i><'col-md-7'p>>", // Menyesuaikan tata letak tombol dengan posisi pagination ke kanan bawah
-                'scrollX'   => '100%',
+                'dom'       => 'lBfrtip',   // Menyesuaikan tata letak tombol dengan posisi pagination ke kanan bawah
+                // 'scrollX'   => '100%',
                 'scrollY'   => '400px', // Atur tinggi scroll di sini sesuai kebutuhan Anda
                 'stateSave' => true,
                 'order'     => [[0, 'desc']],
@@ -94,12 +92,16 @@ public function dataTable($query)
             ],
             'initComplete' => 'function () {
                 $("table.dataTable thead").eq(1).remove();
+                $(".dataTables_scrollHeadInner").css({"width":"100%"});
+                $(".dataTables_scrollHeadInner table").css({"width":"100%"});
                 $(window).on("resize", function() {
                     $("table.dataTable thead").eq(1).remove();
                 });
             }',
             'drawCallback' => 'function () {
                 $("table.dataTable thead").eq(1).remove();
+                $(".dataTables_scrollHeadInner").css({"width":"100%"});
+                $(".dataTables_scrollHeadInner table").css({"width":"100%"});
             }',
         ]);
     }

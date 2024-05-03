@@ -23,3 +23,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::resource('karyawans', App\Http\Controllers\KaryawanController::class);
+
+Route::resource('gajis', App\Http\Controllers\GajiController::class);

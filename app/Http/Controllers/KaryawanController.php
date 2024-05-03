@@ -56,7 +56,9 @@ class KaryawanController extends AppBaseController
         $input = $request->all();
 
         $karyawan = $this->karyawanRepository->create($input);
-
+        $sisa_gaji = $request->uang_transport + $request->uang_makan - $request->pengembalian - $request->tunai_gaji;
+        $karyawan->sisa_gaji = $sisa_gaji; // Set nilai sisa gaji
+        $karyawan->save();
         Flash::success('Karyawan saved successfully.');
 
         return redirect(route('karyawans.index'));

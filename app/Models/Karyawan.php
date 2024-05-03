@@ -30,7 +30,7 @@ class Karyawan extends Model
     use HasFactory;
 
     public $table = 'karyawans';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -47,7 +47,7 @@ class Karyawan extends Model
         'uang_transport',
         'pengembalian',
         'tunai_gaji',
-        'sisa_gaji'
+        // 'sisa_gaji'
     ];
 
     /**
@@ -79,5 +79,5 @@ class Karyawan extends Model
         'nama_karyawan' => 'required'
     ];
 
-    
+
 }

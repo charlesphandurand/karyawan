@@ -2,7 +2,7 @@
 
 @section('content')
     <ol class="breadcrumb">
-        <li class="breadcrumb-item">Karyawans</li>
+        <li class="breadcrumb-item">Gajis</li>
     </ol>
     <div class="container-fluid">
         <div class="animated fadeIn">
@@ -12,12 +12,13 @@
                      <div class="card">
                          <div class="card-header">
                              <i class="fa fa-align-justify"></i>
-                             Karyawans
-                             <a class="pull-right" href="{{ route('karyawans.create') }}"><i class="fa fa-plus-square fa-lg"></i></a>
+                             Gajis
+                             <a class="pull-right" href="{{ route('gajis.create') }}"><i class="fa fa-plus-square fa-lg"></i></a>
                          </div>
                          <div class="card-body">
-                             @include('karyawans.table')
+                             @include('gajis.table')
                               <div class="pull-right mr-3">
+                                     
                               </div>
                          </div>
                      </div>

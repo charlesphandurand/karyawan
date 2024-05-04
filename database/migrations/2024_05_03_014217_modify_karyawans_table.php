@@ -14,7 +14,9 @@ class ModifyKaryawansTable extends Migration
     public function up()
     {
         Schema::table('karyawans', function (Blueprint $table) {
-            $table->decimal('sisa_gaji')->nullable()->change();
+            $table->decimal('sisa_gaji', 10, 2)->nullable()->change();
+            // Tambahkan kolom lama_kerja dan buat nullable
+            $table->decimal('lama_kerja', 10, 2)->nullable()->change();
         });
     }
 
@@ -26,7 +28,9 @@ class ModifyKaryawansTable extends Migration
     public function down()
     {
         Schema::table('karyawans', function (Blueprint $table) {
-            $table->decimal('sisa_gaji')->change();
+            $table->decimal('sisa_gaji', 8, 2)->change();
+            // Ubah kembali kolom lama_kerja ke tipe data semula
+            $table->decimal('lama_kerja', 8, 2)->change();
         });
     }
 }

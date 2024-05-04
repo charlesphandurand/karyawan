@@ -42,13 +42,48 @@ public function dataTable($query)
     //     return $karyawan->uang_transport + $karyawan->uang_makan;
     // });
 
-    // Edit kolom lama_kerja
-    $dataTable->editColumn('lama_kerja', function ($karyawan) {
-        return $karyawan->lama_kerja . ' tahun';
+    // Tambahkan kolom sisa gaji
+    $dataTable->editColumn('sisa_gaji', function ($karyawan) {
+        return number_format($karyawan->sisa_gaji, 0, ',', '.');
+    });
+
+    // Edit kolom masa_kerja_gaji
+    $dataTable->editColumn('masa_kerja_gaji', function ($karyawan) {
+        return number_format($karyawan->masa_kerja_gaji, 0, ',', '.');
+    });
+
+    // Edit kolom prestasi_gaji
+    $dataTable->editColumn('prestasi_gaji', function ($karyawan) {
+        return number_format($karyawan->prestasi_gaji, 0, ',', '.');
+    });
+
+    // Edit kolom uang_makan
+    $dataTable->editColumn('uang_makan', function ($karyawan) {
+        return number_format($karyawan->uang_makan, 0, ',', '.');
+    });
+
+    // Edit kolom uang_transport
+    $dataTable->editColumn('uang_transport', function ($karyawan) {
+        return number_format($karyawan->uang_transport, 0, ',', '.');
+    });
+
+    // Edit kolom pengembalian
+    $dataTable->editColumn('pengembalian', function ($karyawan) {
+        return number_format($karyawan->pengembalian, 0, ',', '.');
+    });
+
+    // Edit kolom tunai_gaji
+    $dataTable->editColumn('tunai_gaji', function ($karyawan) {
+        return number_format($karyawan->tunai_gaji, 0, ',', '.');
     });
 
     // Tambahkan kolom action
     $dataTable->addColumn('action', 'karyawans.datatables_actions');
+
+    // Edit kolom lama_kerja
+    $dataTable->editColumn('lama_kerja', function ($karyawan) {
+        return $karyawan->lama_kerja . ' tahun';
+    });
 
     // Edit kolom mulai_kerja untuk menampilkan tanggal dalam format yang diinginkan
     $dataTable->editColumn('mulai_kerja', function ($karyawan) {

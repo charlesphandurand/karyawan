@@ -32,10 +32,10 @@
 
 
 <!-- Lama Kerja Field -->
-<div class="form-group col-sm-6">
+{{-- <div class="form-group col-sm-6">
     {!! Form::label('lama_kerja', 'Lama Kerja:') !!}
     {!! Form::number('lama_kerja', null, ['class' => 'form-control']) !!}
-</div>
+</div> --}}
 
 <!-- Masa Kerja Gaji Field -->
 <div class="form-group col-sm-6">

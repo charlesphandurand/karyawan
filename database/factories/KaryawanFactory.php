@@ -25,7 +25,7 @@ class KaryawanFactory extends Factory
             'nama_karyawan' => $this->faker->word,
         'nomor_rekening' => $this->faker->word,
         'mulai_kerja' => $this->faker->word,
-        'lama_kerja' => $this->faker->word,
+        // 'lama_kerja' => $this->faker->word,
         'masa_kerja_gaji' => $this->faker->word,
         'prestasi_gaji' => $this->faker->word,
         'uang_makan' => $this->faker->word,

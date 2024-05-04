@@ -12,6 +12,7 @@ use App\Http\Controllers\AppBaseController;
 use Yajra\DataTables\DataTables;
 use App\Models\Karyawan;
 use Response;
+use Carbon\Carbon; // Import Carbon untuk manipulasi tanggal
 
 class KaryawanController extends AppBaseController
 {
@@ -55,11 +56,24 @@ class KaryawanController extends AppBaseController
     {
         $input = $request->all();
 
+    // // Parsing tanggal mulai kerja menjadi objek Carbon
+    // $mulai_kerja = Carbon::parse($input['mulai_kerja']);
+
+    // // Hitung lama kerja dalam tahun
+    // $tahun_sekarang = Carbon::now();
+    // $lama_kerja = $tahun_sekarang->diffInDays($mulai_kerja) / 365;
+
+    // // Tambahkan lama kerja ke dalam input
+    // $input['lama_kerja'] = $lama_kerja;
+
+
         $karyawan = $this->karyawanRepository->create($input);
+        // Set nilai sisa gaji
         $sisa_gaji = $request->uang_transport + $request->uang_makan - $request->pengembalian - $request->tunai_gaji;
-        $karyawan->sisa_gaji = $sisa_gaji; // Set nilai sisa gaji
+        $karyawan->sisa_gaji = $sisa_gaji;
         $karyawan->save();
-        Flash::success('Karyawan saved successfully.');
+
+        Flash::success('Karyawan saved successfully 👍');
 
         return redirect(route('karyawans.index'));
     }
@@ -131,7 +145,7 @@ class KaryawanController extends AppBaseController
         // Simpan perubahan
         $karyawan->save();
 
-        Flash::success('Karyawan updated successfully.');
+        Flash::success('Karyawan updated successfully 👍');
         return redirect(route('karyawans.index'));
     }
 
@@ -153,9 +167,11 @@ class KaryawanController extends AppBaseController
             return redirect(route('karyawans.index'));
         }
 
-        $this->karyawanRepository->delete($id);
+        // $this->karyawanRepository->delete($id);
+        // Gunakan forceDelete untuk menghapus tanpa soft delete
+        $karyawan->forceDelete();
 
-        Flash::success('Karyawan deleted successfully.');
+        Flash::success('Karyawan deleted successfully 👍');
 
         return redirect(route('karyawans.index'));
     }

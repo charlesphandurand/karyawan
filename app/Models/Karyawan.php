@@ -37,7 +37,7 @@ class Karyawan extends Model
         'nama_karyawan',
         'nomor_rekening',
         'mulai_kerja',
-        'lama_kerja',
+        // 'lama_kerja',
         'masa_kerja_gaji',
         'prestasi_gaji',
         'uang_makan',

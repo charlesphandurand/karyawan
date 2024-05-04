@@ -31,15 +31,15 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <a class="navbar-brand" href="#">
-        <img class="navbar-brand-full" src="http://infyom.com/images/logo/blue_logo_150x150.jpg" width="30" height="30"
-             alt="InfyOm Logo">
-        <img class="navbar-brand-minimized" src="http://infyom.com/images/logo/blue_logo_150x150.jpg" width="30"
-             height="30" alt="InfyOm Logo">
+        <img class="navbar-brand-full" src="{{ asset('pbg.png') }}" width="30" height="30"
+             alt="PBG logo">
+        <img class="navbar-brand-minimized" src="{{ asset('pbg.png') }}" width="30"
+             height="30" alt="PBG logo">
     </a>
     <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
         <span class="navbar-toggler-icon"></span>
     </button>
-
+    <div id="liveDate" class="d-flex justify-content-start ml-2" style="color: #9EA8B2"></div>
     <ul class="nav navbar-nav ml-auto">
         {{-- <li class="nav-item d-md-down-none">
             <a class="nav-link" href="#">
@@ -109,4 +109,34 @@
 {{-- <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script> --}}
 @stack('scripts')
 
+{{-- live data --}}
+<script>
+    function updateLiveDate() {
+        var now = new Date();
+        var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+        var day = days[now.getDay()];
+        var date = now.getDate();
+        var month = months[now.getMonth()];
+        var year = now.getFullYear();
+        var hours = now.getHours();
+        var minutes = now.getMinutes();
+        var seconds = now.getSeconds();
+
+        // Add leading zero if needed
+        if (hours < 10) hours = '0' + hours;
+        if (minutes < 10) minutes = '0' + minutes;
+        if (seconds < 10) seconds = '0' + seconds;
+
+        var liveDateElement = document.getElementById('liveDate');
+        liveDateElement.textContent = day + ', ' + date + ' ' + month + ' ' + year + ' | ' + hours + ':' + minutes + ':' + seconds;
+    }
+
+    // Update the live date every second
+    setInterval(updateLiveDate, 1000);
+
+    // Initial call to update the live date
+    updateLiveDate();
+    </script>
 </html>

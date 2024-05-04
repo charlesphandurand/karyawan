@@ -155,6 +155,7 @@ public function dataTable($query)
     {
         return [
             'nama_karyawan',
+            'nama_jabatan',
             'nomor_rekening',
             'mulai_kerja',
             'lama_kerja',

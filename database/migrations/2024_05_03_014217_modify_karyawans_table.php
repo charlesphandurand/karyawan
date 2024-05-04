@@ -17,6 +17,8 @@ class ModifyKaryawansTable extends Migration
             $table->decimal('sisa_gaji', 10, 2)->nullable()->change();
             // Tambahkan kolom lama_kerja dan buat nullable
             $table->decimal('lama_kerja', 10, 2)->nullable()->change();
+
+            $table->string('nama_jabatan')->after('nama_karyawan')->nullable();
         });
     }
 
@@ -31,6 +33,9 @@ class ModifyKaryawansTable extends Migration
             $table->decimal('sisa_gaji', 8, 2)->change();
             // Ubah kembali kolom lama_kerja ke tipe data semula
             $table->decimal('lama_kerja', 8, 2)->change();
+
+
+            $table->dropColumn('nama_jabatan');
         });
     }
 }

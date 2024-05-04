@@ -35,6 +35,7 @@ class Karyawan extends Model
 
     public $fillable = [
         'nama_karyawan',
+        'nama_jabatan',
         'nomor_rekening',
         'mulai_kerja',
         // 'lama_kerja',
@@ -55,6 +56,7 @@ class Karyawan extends Model
     protected $casts = [
         'id' => 'integer',
         'nama_karyawan' => 'string',
+        'nama_jabatan' => 'string',
         'nomor_rekening' => 'string',
         'mulai_kerja' => 'date',
         'lama_kerja' => 'double',

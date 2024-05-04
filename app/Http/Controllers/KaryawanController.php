@@ -54,6 +54,11 @@ class KaryawanController extends AppBaseController
      */
     public function store(CreateKaryawanRequest $request)
     {
+        $request->validate([
+            'nama_karyawan' => 'required',
+            'nama_jabatan' => 'nullable', // Tambahkan validasi untuk kolom nama_jabatan
+            // tambahkan validasi untuk properti lainnya
+        ]);
         $input = $request->all();
 
     // // Parsing tanggal mulai kerja menjadi objek Carbon

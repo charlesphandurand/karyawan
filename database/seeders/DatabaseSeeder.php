@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         ]);
         \App\Models\Karyawan::factory(50)->create([
             'nama_karyawan' => 'TAUFAN TRI MARTONO',
+            'nama_jabatan' => 'Supervisor',
             'nomor_rekening' => '0310006406998',
             'mulai_kerja' => '2007-11-01',
             'lama_kerja' => '16',

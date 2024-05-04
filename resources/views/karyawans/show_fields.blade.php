@@ -4,6 +4,12 @@
     <span>{{ $karyawan->nama_karyawan }}</span>
 </div>
 
+<!-- Nama Jabatan Field -->
+<div class="form-group">
+    <b>{!! Form::label('nama_jabatan', 'Nama Jabatan:') !!}</b>
+    <span>{{ $karyawan->nama_jabatan }}</span>
+</div>
+
 <!-- Nomor Rekening Field -->
 <div class="form-group">
     <b>{!! Form::label('nomor_rekening', 'Nomor Rekening:') !!}</b>

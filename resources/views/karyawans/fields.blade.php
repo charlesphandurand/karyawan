@@ -4,6 +4,12 @@
     {!! Form::text('nama_karyawan', null, ['class' => 'form-control']) !!}
 </div>
 
+<!-- Nama Jabatan Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('nama_jabatan', 'Nama Jabatan:') !!}
+    {!! Form::text('nama_jabatan', null, ['class' => 'form-control']) !!}
+</div>
+
 <!-- Nomor Rekening Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('nomor_rekening', 'Nomor Rekening:') !!}

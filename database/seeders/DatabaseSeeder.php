@@ -31,10 +31,13 @@ class DatabaseSeeder extends Seeder
             'pengembalian' => '300',
             'tunai_gaji' => '300',
         ])->each(function ($karyawan) {
-            // Hitung nilai sisa gaji
-            $sisa_gaji = $karyawan->uang_makan + $karyawan->uang_transport - $karyawan->pengembalian - $karyawan->tunai_gaji;
+            
+            // Set nilai standar gaji hasil dari relasi dengan model Gaji
+            $standar_gaji = $karyawan->gaji->standar_gaji;
+            $karyawan->standart = $standar_gaji;
 
-            // Set nilai sisa gaji ke dalam entri karyawan
+            // Hitung nilai sisa gaji | Set nilai sisa gaji ke dalam entri karyawan
+            $sisa_gaji = $karyawan->uang_makan + $karyawan->uang_transport - $karyawan->pengembalian - $karyawan->tunai_gaji;
             $karyawan->sisa_gaji = $sisa_gaji;
 
             // Simpan entri karyawan ke dalam database

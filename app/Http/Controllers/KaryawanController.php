@@ -65,8 +65,17 @@ class KaryawanController extends AppBaseController
         $karyawan = $this->karyawanRepository->create($input);
 
         // Set nilai tanggal
-        $sisa_gaji = $request->uang_transport + $request->uang_makan - $request->pengembalian - $request->tunai_gaji;
-        $karyawan->sisa_gaji = $sisa_gaji;
+        // Mendapatkan tahun saat ini | Mendapatkan tahun mulai kerja dari $request (asumsi $mulai_kerja adalah tanggal)
+        $tahun_sekarang = date('Y');
+        $tanggal_mulai_kerja = strtotime($request->mulai_kerja);
+        $tahun_mulai_kerja = date('Y', $tanggal_mulai_kerja);
+
+        // Menghitung lama kerja dalam tahun
+        $lama_kerja_tahun = $tahun_sekarang - $tahun_mulai_kerja;
+
+        // Simpan nilai lama kerja
+        $karyawan->lama_kerja = $lama_kerja_tahun;
+
 
         // Set nilai standar gaji hasil dari relasi dengan model Gaji
         $standar_gaji = $karyawan->gaji->standar_gaji;
@@ -142,6 +151,13 @@ class KaryawanController extends AppBaseController
         // Update data karyawan
         $input = $request->all();
         $karyawan = $this->karyawanRepository->update($input, $id);
+
+        // Set nilai tanggal
+        $tahun_sekarang = date('Y');
+        $tanggal_mulai_kerja = strtotime($request->mulai_kerja);
+        $tahun_mulai_kerja = date('Y', $tanggal_mulai_kerja);
+        $lama_kerja_tahun = $tahun_sekarang - $tahun_mulai_kerja;
+        $karyawan->lama_kerja = $lama_kerja_tahun;
 
         // Set nilai standar gaji hasil dari relasi dengan model Gaji
         $standar_gaji = $karyawan->gaji->standar_gaji;

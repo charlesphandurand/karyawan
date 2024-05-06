@@ -64,6 +64,10 @@ class KaryawanController extends AppBaseController
         $input = $request->all();
         $karyawan = $this->karyawanRepository->create($input);
 
+        // Set nilai tanggal
+        $sisa_gaji = $request->uang_transport + $request->uang_makan - $request->pengembalian - $request->tunai_gaji;
+        $karyawan->sisa_gaji = $sisa_gaji;
+
         // Set nilai standar gaji hasil dari relasi dengan model Gaji
         $standar_gaji = $karyawan->gaji->standar_gaji;
         $karyawan->standart = $standar_gaji;

@@ -12,6 +12,12 @@
     {{-- <p>{{ $test->gaji ? $test->gaji->jabatan : 'N/A' }}</p> --}}
 </div>
 
+<!-- Standart Field -->
+<div class="form-group">
+    <b>{!! Form::label('standart', 'Standart:') !!}</b>
+    <span> {{ $karyawan->gaji->standar_gaji }}</span>
+</div>
+
 
 <!-- Nomor Rekening Field -->
 <div class="form-group">

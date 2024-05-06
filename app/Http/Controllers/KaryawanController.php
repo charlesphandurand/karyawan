@@ -57,6 +57,7 @@ class KaryawanController extends AppBaseController
         $request->validate([
             'nama_karyawan' => 'required',
             'nama_jabatan' => 'nullable', // Tambahkan validasi untuk kolom nama_jabatan
+            'standart' => 'nullable',
             // tambahkan validasi untuk properti lainnya
         ]);
         $input = $request->all();

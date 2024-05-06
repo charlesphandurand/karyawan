@@ -60,6 +60,7 @@ class Karyawan extends Model
         'id' => 'integer',
         'nama_karyawan' => 'string',
         'nama_jabatan' => 'integer',
+        'standart'=> 'integer',
         'nomor_rekening' => 'string',
         'mulai_kerja' => 'date',
         'lama_kerja' => 'double',

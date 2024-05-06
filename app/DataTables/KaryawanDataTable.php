@@ -92,7 +92,17 @@ public function dataTable($query)
 
     // Edit kolom nama_jabatan
     $dataTable->editColumn('nama_jabatan', function ($karyawan) {
-        return ($karyawan->gaji->jabatan);
+    // Periksa apakah karyawan memiliki relasi gaji
+    if ($karyawan->gaji) {
+        return $karyawan->gaji->jabatan;
+    } else {
+        return 'Tidak ada data jabatan';
+    }
+    });
+
+    // Edit kolom standart
+    $dataTable->editColumn('standart', function ($karyawan) {
+        return number_format($karyawan->gaji->standar_gaji, 0, ',', '.');
     });
 
     return $dataTable;
@@ -160,17 +170,18 @@ public function dataTable($query)
     {
         return [
             'nama_karyawan',
-            'nama_jabatan',
-            'nomor_rekening',
-            'mulai_kerja',
-            'lama_kerja',
-            'masa_kerja_gaji',
-            'prestasi_gaji',
+            'nama_jabatan'=> ['title' => 'Jabatan'],
+            'standart',
+            'nomor_rekening'=> ['title' => 'No Rek'],
+            'mulai_kerja'=> ['title' => 'Mulai'],
+            'lama_kerja'=> ['title' => 'Lama Bekerja'],
+            'masa_kerja_gaji'=> ['title' => 'Masa Kerja'],
+            'prestasi_gaji'=> ['title' => 'Prestasi Sewa'],
             'uang_makan',
             'uang_transport',
             'pengembalian',
-            'tunai_gaji',
-            'sisa_gaji',
+            'tunai_gaji'=> ['title' => 'Gaji Tunai'],
+            'sisa_gaji'=> ['title' => 'Sisa'],
         ];
     }
 

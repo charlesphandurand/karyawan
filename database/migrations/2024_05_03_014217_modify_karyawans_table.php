@@ -19,6 +19,7 @@ class ModifyKaryawansTable extends Migration
             $table->decimal('lama_kerja', 10, 2)->nullable()->change();
 
             $table->integer('nama_jabatan')->after('nama_karyawan')->nullable();
+            $table->integer('standart')->after('nama_jabatan')->nullable();
         });
     }
 
@@ -36,6 +37,7 @@ class ModifyKaryawansTable extends Migration
 
 
             $table->dropColumn('nama_jabatan');
+            $table->dropColumn('standart');
         });
     }
 }

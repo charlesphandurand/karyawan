@@ -31,7 +31,10 @@ class Karyawan extends Model
     public $table = 'karyawans';
     protected $dates = ['deleted_at'];
 
-
+    public function gaji()
+    {
+        return $this->belongsTo(Gaji::class, 'nama_jabatan');
+    }
 
     public $fillable = [
         'nama_karyawan',
@@ -56,7 +59,7 @@ class Karyawan extends Model
     protected $casts = [
         'id' => 'integer',
         'nama_karyawan' => 'string',
-        'nama_jabatan' => 'string',
+        'nama_jabatan' => 'integer',
         'nomor_rekening' => 'string',
         'mulai_kerja' => 'date',
         'lama_kerja' => 'double',

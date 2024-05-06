@@ -1,14 +1,17 @@
 <!-- Nama Karyawan Field -->
 <div class="form-group">
     <b>{!! Form::label('nama_karyawan', 'Nama Karyawan:') !!}</b>
-    <span>{{ $karyawan->nama_karyawan }}</span>
+    {{ $karyawan->nama_karyawan }}</span>
 </div>
 
 <!-- Nama Jabatan Field -->
 <div class="form-group">
-    <b>{!! Form::label('nama_jabatan', 'Nama Jabatan:') !!}</b>
-    <span>{{ $karyawan->nama_jabatan }}</span>
+    <b>{!! Form::label('nama_jabatan', 'Jabatan:') !!}</b>
+    <span>{{ $karyawan->gaji->jabatan}}</span>
+    {{-- <p>{{ $test->jabatan_id }}</p> --}}
+    {{-- <p>{{ $test->gaji ? $test->gaji->jabatan : 'N/A' }}</p> --}}
 </div>
+
 
 <!-- Nomor Rekening Field -->
 <div class="form-group">

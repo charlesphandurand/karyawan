@@ -90,6 +90,11 @@ public function dataTable($query)
         return date('Y-m-d', strtotime($karyawan->mulai_kerja));
     });
 
+    // Edit kolom nama_jabatan
+    $dataTable->editColumn('nama_jabatan', function ($karyawan) {
+        return ($karyawan->gaji->jabatan);
+    });
+
     return $dataTable;
 }
 

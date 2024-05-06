@@ -23,6 +23,7 @@ class KaryawanFactory extends Factory
     {
         return [
             'nama_karyawan' => $this->faker->word,
+            'nama_jabatan' => $this->faker->randomDigitNotNull,
         'nomor_rekening' => $this->faker->word,
         'mulai_kerja' => $this->faker->word,
         // 'lama_kerja' => $this->faker->word,

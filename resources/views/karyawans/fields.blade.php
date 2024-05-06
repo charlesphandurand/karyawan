@@ -6,8 +6,8 @@
 
 <!-- Nama Jabatan Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('nama_jabatan', 'Nama Jabatan:') !!}
-    {!! Form::text('nama_jabatan', null, ['class' => 'form-control']) !!}
+    {!! Form::label('nama_jabatan', 'Jabatan:') !!}
+    {!! Form::select('nama_jabatan', $gajiItems, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Nomor Rekening Field -->

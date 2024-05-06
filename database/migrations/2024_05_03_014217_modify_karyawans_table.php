@@ -18,7 +18,7 @@ class ModifyKaryawansTable extends Migration
             // Tambahkan kolom lama_kerja dan buat nullable
             $table->decimal('lama_kerja', 10, 2)->nullable()->change();
 
-            $table->string('nama_jabatan')->after('nama_karyawan')->nullable();
+            $table->integer('nama_jabatan')->after('nama_karyawan')->nullable();
         });
     }
 

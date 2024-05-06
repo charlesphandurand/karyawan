@@ -18,6 +18,8 @@ class KaryawanRepository extends BaseRepository
      */
     protected $fieldSearchable = [
         'nama_karyawan',
+        'nama_jabatan',
+        'standart',
         'nomor_rekening',
         'mulai_kerja',
         'lama_kerja',

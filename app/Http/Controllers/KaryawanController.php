@@ -60,23 +60,18 @@ class KaryawanController extends AppBaseController
             'standart' => 'nullable',
             // tambahkan validasi untuk properti lainnya
         ]);
+
         $input = $request->all();
-
-    // // Parsing tanggal mulai kerja menjadi objek Carbon
-    // $mulai_kerja = Carbon::parse($input['mulai_kerja']);
-
-    // // Hitung lama kerja dalam tahun
-    // $tahun_sekarang = Carbon::now();
-    // $lama_kerja = $tahun_sekarang->diffInDays($mulai_kerja) / 365;
-
-    // // Tambahkan lama kerja ke dalam input
-    // $input['lama_kerja'] = $lama_kerja;
-
-
         $karyawan = $this->karyawanRepository->create($input);
+
+        // Set nilai standar gaji hasil dari relasi dengan model Gaji
+        $standar_gaji = $karyawan->gaji->standar_gaji;
+        $karyawan->standart = $standar_gaji;
+
         // Set nilai sisa gaji
         $sisa_gaji = $request->uang_transport + $request->uang_makan - $request->pengembalian - $request->tunai_gaji;
         $karyawan->sisa_gaji = $sisa_gaji;
+
         $karyawan->save();
 
         Flash::success('Karyawan saved successfully 👍');
@@ -143,6 +138,10 @@ class KaryawanController extends AppBaseController
         // Update data karyawan
         $input = $request->all();
         $karyawan = $this->karyawanRepository->update($input, $id);
+
+        // Set nilai standar gaji hasil dari relasi dengan model Gaji
+        $standar_gaji = $karyawan->gaji->standar_gaji;
+        $karyawan->standart = $standar_gaji;
 
         // Hitung ulang sisa gaji
         $sisa_gaji = $request->uang_transport + $request->uang_makan - $request->pengembalian - $request->tunai_gaji;

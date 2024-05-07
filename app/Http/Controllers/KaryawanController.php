@@ -64,22 +64,48 @@ class KaryawanController extends AppBaseController
         $input = $request->all();
         $karyawan = $this->karyawanRepository->create($input);
 
-        // Set nilai tanggal
-        // Mendapatkan tahun saat ini | Mendapatkan tahun mulai kerja dari $request (asumsi $mulai_kerja adalah tanggal)
-        $tahun_sekarang = date('Y');
-        $tanggal_mulai_kerja = strtotime($request->mulai_kerja);
-        $tahun_mulai_kerja = date('Y', $tanggal_mulai_kerja);
-
-        // Menghitung lama kerja dalam tahun
-        $lama_kerja_tahun = $tahun_sekarang - $tahun_mulai_kerja;
-
-        // Simpan nilai lama kerja
-        $karyawan->lama_kerja = $lama_kerja_tahun;
+    // Set nilai standar gaji hasil dari relasi dengan model Gaji
+    $standar_gaji = $karyawan->gaji->standar_gaji;
+    $karyawan->standart = $standar_gaji;
 
 
-        // Set nilai standar gaji hasil dari relasi dengan model Gaji
-        $standar_gaji = $karyawan->gaji->standar_gaji;
-        $karyawan->standart = $standar_gaji;
+// Set nilai tanggal
+$tanggal_mulai_kerja = Carbon::createFromFormat('Y-m-d', $request->mulai_kerja);
+$tanggal_sekarang = Carbon::now();
+
+// Menghitung lama kerja dalam tahun
+$lama_kerja_tahun = $tanggal_sekarang->year - $tanggal_mulai_kerja->year;
+
+// Periksa apakah tanggal saat ini lebih kecil dari tanggal mulai kerja pada tahun ini
+if ($tanggal_sekarang->month < $tanggal_mulai_kerja->month ||
+    ($tanggal_sekarang->month == $tanggal_mulai_kerja->month && $tanggal_sekarang->day < $tanggal_mulai_kerja->day)) {
+    // Jika iya, kurangi satu tahun dari lama kerja
+    $lama_kerja_tahun--;
+}
+
+$karyawan->lama_kerja = $lama_kerja_tahun;
+
+// Set nilai masa_kerja_gaji
+$masa_kerja_gaji = ($lama_kerja_tahun <= ($tanggal_sekarang->year - 2011)) ? $lama_kerja_tahun * 50000 :
+(($tanggal_sekarang->year - 2011) * 50000) + (($lama_kerja_tahun - ($tanggal_sekarang->year - 2011)) * 25000);
+$karyawan->masa_kerja_gaji = $masa_kerja_gaji;
+
+
+
+
+        // // Set nilai tanggal
+        // $tanggal_mulai_kerja = Carbon::createFromFormat('Y-m-d', $request->mulai_kerja);
+        // $tanggal_sekarang = Carbon::now();
+        // $lama_kerja_tahun = $tanggal_mulai_kerja->diffInYears($tanggal_sekarang);
+        // if ($tanggal_sekarang->month < $tanggal_mulai_kerja->month || ($tanggal_sekarang->month == $tanggal_mulai_kerja->month && $tanggal_sekarang->day < $tanggal_mulai_kerja->day)) {
+        //     $lama_kerja_tahun--;
+        // }
+        // $karyawan->lama_kerja = $lama_kerja_tahun;
+
+        // // Set nilai masa_kerja_gaji
+        // $masa_kerja_gaji = ($lama_kerja_tahun <= ($tanggal_sekarang->year - 2011)) ? $lama_kerja_tahun * 50000 :
+        // (($tanggal_sekarang->year - 2011) * 50000) + (($lama_kerja_tahun - ($tanggal_sekarang->year - 2011)) * 25000);
+        // $karyawan->masa_kerja_gaji = $masa_kerja_gaji;
 
         // Set nilai sisa gaji
         $sisa_gaji = $request->uang_transport + $request->uang_makan - $request->pengembalian - $request->tunai_gaji;
@@ -153,11 +179,25 @@ class KaryawanController extends AppBaseController
         $karyawan = $this->karyawanRepository->update($input, $id);
 
         // Set nilai tanggal
-        $tahun_sekarang = date('Y');
-        $tanggal_mulai_kerja = strtotime($request->mulai_kerja);
-        $tahun_mulai_kerja = date('Y', $tanggal_mulai_kerja);
-        $lama_kerja_tahun = $tahun_sekarang - $tahun_mulai_kerja;
+        $tanggal_mulai_kerja = Carbon::createFromFormat('Y-m-d', $request->mulai_kerja);
+        $tanggal_sekarang = Carbon::now();
+
+        // Menghitung lama kerja dalam tahun
+        $lama_kerja_tahun = $tanggal_sekarang->year - $tanggal_mulai_kerja->year;
+
+        // Periksa apakah tanggal saat ini lebih kecil dari tanggal mulai kerja pada tahun ini
+        if ($tanggal_sekarang->month < $tanggal_mulai_kerja->month ||
+            ($tanggal_sekarang->month == $tanggal_mulai_kerja->month && $tanggal_sekarang->day < $tanggal_mulai_kerja->day)) {
+            // Jika iya, kurangi satu tahun dari lama kerja
+            $lama_kerja_tahun--;
+        }
+
         $karyawan->lama_kerja = $lama_kerja_tahun;
+
+        // Set nilai masa_kerja_gaji
+        $masa_kerja_gaji = ($lama_kerja_tahun <= ($tanggal_sekarang->year - 2011)) ? $lama_kerja_tahun * 50000 :
+        (($tanggal_sekarang->year - 2011) * 50000) + (($lama_kerja_tahun - ($tanggal_sekarang->year - 2011)) * 25000);
+        $karyawan->masa_kerja_gaji = $masa_kerja_gaji;
 
         // Set nilai standar gaji hasil dari relasi dengan model Gaji
         $standar_gaji = $karyawan->gaji->standar_gaji;

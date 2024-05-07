@@ -22,12 +22,12 @@ class KaryawanFactory extends Factory
     public function definition()
     {
         return [
-            'nama_karyawan' => $this->faker->word,
-            'nama_jabatan' => $this->faker->randomDigitNotNull,
+        'nama_karyawan' => $this->faker->word,
+        'nama_jabatan' => $this->faker->randomDigitNotNull,
         'nomor_rekening' => $this->faker->word,
         'mulai_kerja' => $this->faker->word,
         // 'lama_kerja' => $this->faker->word,
-        'masa_kerja_gaji' => $this->faker->word,
+        // 'masa_kerja_gaji' => $this->faker->word,
         'prestasi_gaji' => $this->faker->word,
         'uang_makan' => $this->faker->word,
         'uang_transport' => $this->faker->word,

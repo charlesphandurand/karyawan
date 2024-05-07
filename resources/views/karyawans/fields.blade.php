@@ -44,10 +44,10 @@
 </div> --}}
 
 <!-- Masa Kerja Gaji Field -->
-<div class="form-group col-sm-6">
+{{-- <div class="form-group col-sm-6">
     {!! Form::label('masa_kerja_gaji', 'Masa Kerja Gaji:') !!}
     {!! Form::number('masa_kerja_gaji', null, ['class' => 'form-control']) !!}
-</div>
+</div> --}}
 
 <!-- Prestasi Gaji Field -->
 <div class="form-group col-sm-6">

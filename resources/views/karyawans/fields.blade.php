@@ -25,7 +25,7 @@
 @push('scripts')
    <script type="text/javascript">
            $('#mulai_kerja').datetimepicker({
-               format: 'YYYY-MM-DD',
+               format: 'DD-MM-YYYY',
                useCurrent: true,
                icons: {
                    up: "icon-arrow-up-circle icons font-2xl",

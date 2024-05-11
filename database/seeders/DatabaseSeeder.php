@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
             'pengembalian' => '300',
             'tunai_gaji' => '300',
         ])->each(function ($karyawan) {
-            
+
             // Set nilai standar gaji hasil dari relasi dengan model Gaji
             $standar_gaji = $karyawan->gaji->standar_gaji;
             $karyawan->standart = $standar_gaji;

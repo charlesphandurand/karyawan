@@ -18,3 +18,4 @@
 <script src="https://cdn.datatables.net/searchpanes/2.3.1/js/searchPanes.bootstrap4.min.js"></script>
 <script src="https://cdn.datatables.net/scroller/2.4.1/js/dataTables.scroller.min.js"></script>
 <script src="https://cdn.datatables.net/scroller/2.4.1/js/scroller.bootstrap4.min.js"></script>
+

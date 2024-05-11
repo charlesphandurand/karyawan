@@ -15,7 +15,7 @@
 <!-- Standart Field -->
 <div class="form-group">
     <b>{!! Form::label('standart', 'Standart:') !!}</b>
-    <span> {{ $karyawan->gaji->standar_gaji }}</span>
+    <span> {{ number_format($karyawan->gaji->standar_gaji, 0, ',', '.') }}</span>
 </div>
 
 
@@ -28,7 +28,7 @@
 <!-- Mulai Kerja Field -->
 <div class="form-group">
     <b>{!! Form::label('mulai_kerja', 'Mulai Kerja:') !!}</b>
-    <span>{{ $karyawan->mulai_kerja->format('Y-m-d') }}</span>
+    <span>{{ $karyawan->mulai_kerja->format('d-m-Y') }}</span>
 </div>
 
 <!-- Lama Kerja Field -->
@@ -82,12 +82,12 @@
 <!-- Created At Field -->
 <div class="form-group">
     <b>{!! Form::label('created_at', 'Created At:') !!}</b>
-    <span>{{ $karyawan->created_at }}</span>
+    <span>{{ $karyawan->created_at->format('d-m-Y') }}</span>
 </div>
 
 <!-- Updated At Field -->
 <div class="form-group">
     <b>{!! Form::label('updated_at', 'Updated At:') !!}</b>
-    <span>{{ $karyawan->updated_at }}</span>
+    <span>{{ $karyawan->updated_at->format('d-m-Y') }}</span>
 </div>
 

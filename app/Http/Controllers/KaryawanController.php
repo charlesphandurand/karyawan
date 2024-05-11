@@ -70,7 +70,7 @@ class KaryawanController extends AppBaseController
 
 
 // Set nilai tanggal
-$tanggal_mulai_kerja = Carbon::createFromFormat('Y-m-d', $request->mulai_kerja);
+$tanggal_mulai_kerja = Carbon::createFromFormat('d-m-Y', $request->mulai_kerja);
 $tanggal_sekarang = Carbon::now();
 
 // Menghitung lama kerja dalam tahun
@@ -160,7 +160,7 @@ $karyawan->masa_kerja_gaji = $masa_kerja_gaji;
     /**
      * Update the specified Karyawan in storage.
      *
-     * @param  int              $id
+     * @param  int $id
      * @param UpdateKaryawanRequest $request
      *
      * @return Response
@@ -179,7 +179,7 @@ $karyawan->masa_kerja_gaji = $masa_kerja_gaji;
         $karyawan = $this->karyawanRepository->update($input, $id);
 
         // Set nilai tanggal
-        $tanggal_mulai_kerja = Carbon::createFromFormat('Y-m-d', $request->mulai_kerja);
+        $tanggal_mulai_kerja = Carbon::createFromFormat('d-m-Y', $request->mulai_kerja);
         $tanggal_sekarang = Carbon::now();
 
         // Menghitung lama kerja dalam tahun

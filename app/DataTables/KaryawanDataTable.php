@@ -7,6 +7,7 @@ use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
+use Yajra\DataTables\DataTables;
 
 class KaryawanDataTable extends DataTable
 {
@@ -44,37 +45,41 @@ public function dataTable($query)
 
     // Tambahkan kolom sisa gaji
     $dataTable->editColumn('sisa_gaji', function ($karyawan) {
-        return number_format($karyawan->sisa_gaji, 0, ',', '.');
+        // return ($karyawan->sisa_gaji);
+        return $karyawan->sisa_gaji;
     });
 
     // Edit kolom masa_kerja_gaji
     $dataTable->editColumn('masa_kerja_gaji', function ($karyawan) {
-        return number_format($karyawan->masa_kerja_gaji, 0, ',', '.');
+        return $karyawan->masa_kerja_gaji;
     });
 
     // Edit kolom prestasi_gaji
     $dataTable->editColumn('prestasi_gaji', function ($karyawan) {
-        return number_format($karyawan->prestasi_gaji, 0, ',', '.');
+        return $karyawan->prestasi_gaji;
     });
 
     // Edit kolom uang_makan
+    // $dataTable->editColumn('uang_makan', function ($karyawan) {
+    //     return $karyawan->uang_makan;
+    // });
     $dataTable->editColumn('uang_makan', function ($karyawan) {
-        return number_format($karyawan->uang_makan, 0, ',', '.');
+        return $karyawan->uang_makan;
     });
 
     // Edit kolom uang_transport
     $dataTable->editColumn('uang_transport', function ($karyawan) {
-        return number_format($karyawan->uang_transport, 0, ',', '.');
+        return $karyawan->uang_transport;
     });
 
     // Edit kolom pengembalian
     $dataTable->editColumn('pengembalian', function ($karyawan) {
-        return number_format($karyawan->pengembalian, 0, ',', '.');
+        return $karyawan->pengembalian;
     });
 
     // Edit kolom tunai_gaji
     $dataTable->editColumn('tunai_gaji', function ($karyawan) {
-        return number_format($karyawan->tunai_gaji, 0, ',', '.');
+        return $karyawan->tunai_gaji;
     });
 
     // Tambahkan kolom action
@@ -87,7 +92,7 @@ public function dataTable($query)
 
     // Edit kolom mulai_kerja untuk menampilkan tanggal dalam format yang diinginkan
     $dataTable->editColumn('mulai_kerja', function ($karyawan) {
-        return date('Y-m-d', strtotime($karyawan->mulai_kerja));
+        return date('d-m-Y', strtotime($karyawan->mulai_kerja));
     });
 
     // Edit kolom nama_jabatan
@@ -102,7 +107,7 @@ public function dataTable($query)
 
     // Edit kolom standart
     $dataTable->editColumn('standart', function ($karyawan) {
-        return number_format($karyawan->gaji->standar_gaji, 0, ',', '.');
+        return $karyawan->gaji->standar_gaji;
     });
 
     return $dataTable;
@@ -135,16 +140,17 @@ public function dataTable($query)
         ->parameters([
                 'dom'       => 'lBfrtip',   // Menyesuaikan tata letak tombol dengan posisi pagination ke kanan bawah
                 // 'scrollX'   => '100%',
-                'scrollY'   => '400px', // Atur tinggi scroll di sini sesuai kebutuhan Anda
+                // 'scrollY'   => '400px', // Atur tinggi scroll di sini sesuai kebutuhan Anda
+                'responsive' => true,
                 'stateSave' => true,
                 'order'     => [[0, 'desc']],
                 'buttons'   => [
                     ['extend' => 'create', 'className' => 'btn btn-default btn-sm no-corner',],
-                    ['extend' => 'export', 'className' => 'btn btn-default btn-sm no-corner',],
+                    ['extend' => 'export', 'className' => 'btn btn-default btn-sm no-corner', ],
                     ['extend' => 'print', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'reset', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'reload', 'className' => 'btn btn-default btn-sm no-corner',],
-            ],
+                ],
             'initComplete' => 'function () {
                 $("table.dataTable thead").eq(1).remove();
                 $(".dataTables_scrollHeadInner").css({"width":"100%"});
@@ -171,19 +177,47 @@ public function dataTable($query)
         return [
             'nama_karyawan',
             'nama_jabatan'=> ['title' => 'Jabatan'],
-            'standart',
             'nomor_rekening'=> ['title' => 'No Rek'],
             'mulai_kerja'=> ['title' => 'Mulai'],
             'lama_kerja'=> ['title' => 'Lama Bekerja'],
+            'standart',
             'masa_kerja_gaji'=> ['title' => 'Masa Kerja'],
             'prestasi_gaji'=> ['title' => 'Prestasi Sewa'],
             'uang_makan',
             'uang_transport',
             'pengembalian',
             'tunai_gaji'=> ['title' => 'Gaji Tunai'],
-            'sisa_gaji'=> ['title' => 'Sisa'],
+            'sisa_gaji'=> ['title' => 'Sisa', 'type' => 'number', 'formatted' => true],
         ];
     }
+    // protected $exportColumns = [
+    //     ['data' => 'nama_karyawan', 'title' => 'Name'],
+    //     ['data' => 'sisa_gaji', 'title' => 'Registered Email', 'formatted' => true, 'columns' => [ // Atur pemformatan untuk setiap kolom yang diekspor
+    //         'standart' => '0.000', // Format uang untuk kolom standart
+    //     ],],
+    //     ['data' => 'uang_makan', 'title' => 'sss', 'formatted' => true, 'columns' => [ // Atur pemformatan untuk setiap kolom yang diekspor
+    //         'standart' => '0.000', // Format uang untuk kolom standart
+    //     ],],
+    // ];
+    // protected $exportColumns = [
+    //     ['data' => 'nama_karyawan', 'title' => 'Name'],
+    //     [
+    //         'data' => 'sisa_gaji',
+    //         'title' => 'Sisa Gaji',
+    //         'formatted' => true,
+    //         'columns' => [
+    //             'standart' => '0,000',
+    //         ]
+    //     ],
+    //     [
+    //         'data' => 'uang_makan',
+    //         'title' => 'Uang Makan',
+    //         'formatted' => true,
+    //         'columns' => [
+    //             'standart' => '0,000',
+    //         ]
+    //     ],
+    // ];
 
     /**
      * Get filename for export.

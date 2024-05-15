@@ -136,21 +136,37 @@ public function dataTable($query)
         ->setTableId('karyawan-table')
         ->columns($this->getColumns())
         ->minifiedAjax()
-        ->addAction(['width' => '100%', 'printable' => false])
+        ->addAction(['width' => '80px', 'printable' => false])
         ->parameters([
                 'dom'       => 'lBfrtip',   // Menyesuaikan tata letak tombol dengan posisi pagination ke kanan bawah
-                // 'scrollX'   => '100%',
-                // 'scrollY'   => '400px', // Atur tinggi scroll di sini sesuai kebutuhan Anda
+                'orderBy'   => [[1]], // Mengurutkan berdasarkan kolom pertama secara descending
+                'scrollX'   =>  true,
+                'scrollY'   => '400px', // Atur tinggi scroll di sini sesuai kebutuhan Anda
+                'scrollCollapse' => true, // Tambahkan baris ini
                 'responsive' => true,
                 'stateSave' => true,
+                'autoWidth' => false,
                 'order'     => [[0, 'desc']],
                 'buttons'   => [
-                    ['extend' => 'create', 'className' => 'btn btn-default btn-sm no-corner',],
+                    ['extend' => 'copy', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'export', 'className' => 'btn btn-default btn-sm no-corner', ],
                     ['extend' => 'print', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'reset', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'reload', 'className' => 'btn btn-default btn-sm no-corner',],
                 ],
+//                 'initComplete' => 'function () {
+//     $("table.dataTable thead").eq(1).remove();
+//     $(".dataTables_scrollHeadInner").css({"width":"100%"});
+//     $(".dataTables_scrollHeadInner table").css({"width":"100%"});
+//     $(window).on("resize", function() {
+//         $("table.dataTable thead").eq(1).remove();
+//     });
+// }',
+// 'drawCallback' => 'function () {
+//     $("table.dataTable thead").eq(1).remove();
+//     $(".dataTables_scrollHeadInner").css({"width":"100%"});
+//     $(".dataTables_scrollHeadInner table").css({"width":"100%"});
+// }',
             'initComplete' => 'function () {
                 $("table.dataTable thead").eq(1).remove();
                 $(".dataTables_scrollHeadInner").css({"width":"100%"});
@@ -190,15 +206,7 @@ public function dataTable($query)
             'sisa_gaji'=> ['title' => 'Sisa', 'type' => 'number', 'formatted' => true],
         ];
     }
-    // protected $exportColumns = [
-    //     ['data' => 'nama_karyawan', 'title' => 'Name'],
-    //     ['data' => 'sisa_gaji', 'title' => 'Registered Email', 'formatted' => true, 'columns' => [ // Atur pemformatan untuk setiap kolom yang diekspor
-    //         'standart' => '0.000', // Format uang untuk kolom standart
-    //     ],],
-    //     ['data' => 'uang_makan', 'title' => 'sss', 'formatted' => true, 'columns' => [ // Atur pemformatan untuk setiap kolom yang diekspor
-    //         'standart' => '0.000', // Format uang untuk kolom standart
-    //     ],],
-    // ];
+// Untuk mengatur kolom yang akan diekspor, Anda dapat menggunakan properti $exportColumns.
     // protected $exportColumns = [
     //     ['data' => 'nama_karyawan', 'title' => 'Name'],
     //     [
